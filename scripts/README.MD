@@ -91,3 +91,14 @@ smarts = pd.read_csv(file_path, header=None, sep='\t')[1].tolist()
 
 ```
 
+Get name of python variable
+```python
+import inspect
+def get_name(var):
+    frame = inspect.currentframe().f_back
+    line = frame.f_lineno
+    code = frame.f_code
+    source_line = inspect.getframeinfo(frame).code_context[0].strip()
+    var_name = source_line[source_line.find('(') + 1:-1].strip()
+    return var_name
+```
